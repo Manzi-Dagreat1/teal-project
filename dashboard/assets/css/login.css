@@ -1,0 +1,226 @@
+/* 
+
+    Contents and all features developed in this system.
+    Prepared and developed by @Prince Parfait - +(250) 7 9205 4846
+    Email Address: ganzaparfait7@gmail.com
+
+*/
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --main-color: #0000ff;
+    --white-color: #fff;
+    --gray-color: #ccc;
+    --black-color: #000;
+    --text-color: #333;
+    --border-color: #eee;
+    --main-better-color: #bbbbff;
+    --body-background-color: #e6e6e6;
+    --box-shadow-normal: 0 4px 4px 4px rgba(240, 238, 238, 0.3);
+    --box-shadow-darker: 0 4px 4px 4px rgba(224, 224, 224, 0.3);
+}
+
+body {
+    background: var(--body-background-color);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+    border: 1px solid var(--main-better-color);
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+body.bodyCalled {
+    background-color: #fff;
+}
+
+input,
+select,
+button {
+    border: none;
+    outline: none;
+}
+
+.msg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+    border-bottom: 1px solid var(--main-color);
+    font-size: 18px;
+    color: var(--black-color);
+    font-weight: 600;
+    padding: 10px 0;
+    transform: scale(0);
+    transform-origin: top right;
+    box-shadow: var(--box-shadow-darker);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+.msg .msgLimitSize {
+    background-color: transparent;
+    margin-left: 10px;
+    margin-right: 35px;
+}
+
+.msg .closeModalBtn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: var(--white-color);
+    background: var(--main-color);
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.msg .closeModalBtn:where(:active, :focus-visible) {
+    opacity: 0.3;
+}
+
+.error-msg {
+    text-align: center;
+    padding: 5px 0;
+    font-weight: 500;
+    color: #ff0000;
+}
+
+.msg.showMsg {
+    transform: scale(1);
+    pointer-events: all;
+    opacity: 1;
+}
+
+.form-wrapper {
+    background-color: var(--white-color);
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 5px 0 5px;
+    box-shadow: 0 10px 10px 10px rgba(218, 218, 218, 0.3);
+}
+
+.form-wrapper.invalid {
+    border: 1px solid #ff0000;
+}
+
+.form-right-container .form-header {
+    background-color: transparent;
+    margin-bottom: 10px;
+    padding: 5px;
+    color: var(--text-color);
+    border-radius: 5px;
+    border-left: 2px solid var(--main-color);
+    border-right: 2px solid var(--main-color);
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+}
+
+.top-plane-container {
+    position: relative;
+    background-color: transparent;
+    text-align: center;
+    margin-bottom: 30px;
+    border-top: 1px solid var(--main-better-color);
+    padding-top: 20px;
+    font-weight: 600;
+    font-size: 30px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.top-plane-container i {
+    color: var(--main-better-color);
+    font-size: 85px;
+    padding: 0 40px 0 40px;
+}
+
+.form-wrapper .form-group {
+    margin-bottom: 20px;
+}
+
+.form-wrapper .form-group .inp {
+    height: 50px;
+    border: 1px solid #ddd5d5;
+    width: 100%;
+    padding-left: 18px;
+    font-size: 18px;
+    color: var(--text-color);
+    box-shadow: var(--box-shadow-normal);
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+}
+
+.form-wrapper .form-group .inp:focus {
+    box-shadow: var(--box-shadow-darker);
+    border: 1px solid var(--main-color);
+}
+
+.form-wrapper .form-check-label,
+.form-wrapper .form-check-input,
+.form-wrapper .form-check {
+    cursor: pointer;
+}
+
+.form-wrapper .form-group .inp:focus::placeholder {
+    transition: all 0.5s ease-in-out;
+    padding-left: 5px;
+}
+
+.form-wrapper .form-group .inp::placeholder {
+    color: var(--main-better-color);
+}
+
+.form-wrapper .loginBtn {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-wrapper .forgotPass {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.form-wrapper .forgotPass a {
+    color: var(--main-color);
+}
+
+@media (max-width: 360px) {
+    .top-plane-container {
+        font-size: 20px;
+    }
+    .top-plane-container i {
+        color: var(--main-better-color);
+        font-size: 55px;
+        padding: 0 20px 0 20px;
+    }
+    
+}
+
+@media (max-width: 270px) {
+    .top-plane-container {
+        font-size: 15px;
+    }
+    .top-plane-container i {
+        color: var(--main-better-color);
+        font-size: 40px;
+        padding: 0 20px 0 20px;
+    }
+    
+}

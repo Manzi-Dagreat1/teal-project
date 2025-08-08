@@ -1,0 +1,373 @@
+/* 
+
+    Contents and all features developed in this system.
+    Prepared and developed by @Prince Parfait - +(250) 7 9205 4846
+    Email Address: ganzaparfait7@gmail.com
+
+*/
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --main-color: #0000ff;
+    --white-color: #fff;
+    --gray-color: #ccc;
+    --black-color: #000;
+    --text-color: #333;
+    --border-color: #eee;
+    --main-better-color: #bbbbff;
+    --body-background-color: #e6e6e6;
+    --box-shadow-normal: 0 4px 4px 4px rgba(240, 238, 238, 0.3);
+    --box-shadow-darker: 0 4px 4px 4px rgba(224, 224, 224, 0.3);
+}
+
+body {
+    background-color: #fff;
+}
+
+.floatThemRight {
+    float: right;
+    margin-top: 30px;
+}
+
+.leftPosCont {
+    position: relative;
+}
+
+.leftPosCont .leftPos {
+    position: absolute;
+    left: 0;
+    padding: 0 10px;
+}
+
+.AnotherSize_2 {
+    font-size: 13px;
+}
+
+.AnotherSize {
+    font-size: 14px;
+}
+
+.leftPosCont .rightPos {
+    float: right;
+    padding-right: 0px;
+}
+
+.cli_report-container {
+    margin: 30px 140px;
+}
+
+.save-container {
+    position: fixed;
+    right: 50px;
+    top: 20px;
+    z-index: 999;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-darker);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.save-container .SaveConSaveButton,
+.save-container .SaveConSaveButtonSec {
+    padding: 10px 30px;
+    text-decoration: none;
+    background-color: var(--main-color);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.allCompContainer {
+    margin: 30px 400px;
+}
+
+@media print {
+    .cli_report-container {
+        margin: 0px 0px;
+    }
+
+    .allCompContainer {
+        margin: 0px 0px;
+    }
+}
+
+.table-contents table tr .alignRight {
+    text-align: right;
+}
+
+.cli_report-container .header-line {
+    border-radius: 2px;
+    margin-bottom: 40px;
+    border: 10px solid #4c95e9;
+}
+
+.header-top-containers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.mainBtns {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    background-color: #fff;
+    z-index: 999;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-darker);
+}
+
+.mainBtns a {
+    display: block;
+    padding: 10px 20px;
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: var(--main-color);
+    margin-bottom: 10px;
+    border: 1px solid var(--main-color);
+    color: var(--white-color);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    border-radius: 50%;
+}
+
+.mainBtns a:hover {
+    background-color: var(--white-color);
+    color: var(--main-color);
+}
+
+.mainBtns .cancelBtn {
+    background-color: #ff0000;
+    border: 1px solid #ff0000;
+}
+
+.mainBtns .cancelBtn:hover {
+    color: #ff0000;
+}
+
+
+
+.invoiceDetails {
+    position: relative;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+}
+
+.right-report-content {
+    position: absolute;
+    right: 0;
+}
+
+.invoiceDetails .clF {
+    width: 400px;
+    border-right: 1px solid #c7c4c4;
+    margin-right: 20px;
+}
+
+.Cash_sign {
+    width: 100%;
+    margin-top: -40px;
+    margin-left: -110px;
+    text-align: center;
+}
+
+.Cash_sign img {
+    width: 300px;
+    margin-left: 20%;
+}
+
+.boldThis {
+    font-weight: 600;
+    padding-right: 5px;
+}
+
+.header-top-containers .p {
+    font-weight: 400;
+}
+
+.header-top-containers .companyName {
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #4c95e9;
+}
+
+.header-top-containers .lP {
+    padding-right: 10px;
+    font-weight: 600;
+}
+
+.header-top-containers .right-header-top-container {
+    margin-top: -40px;
+}
+
+.header-top-containers .right-header-top-container img {
+    width: 200px;
+}
+
+.contentHeader {
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.bottom-contents {
+    width: 100%;
+    padding: 10px 0;
+    border-top: 1px solid #c7c4c4;
+}
+
+.bottom-contents .otherItem {
+    margin-right: 40px;
+}
+
+table tr th,
+table tr td {
+    font-size: 12px !important;
+}
+
+.table-contents {
+    width: 100%;
+    overflow: auto;
+    min-height: 500px;
+    margin-bottom: 100px;
+    max-height: auto;
+}
+
+.table-contents table {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    border-collapse: collapse;
+}
+
+
+table tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.table-contents table tr th,
+.table-contents table tr td {
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+
+
+/* {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{ _Invoice Design Codes_ }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}} */
+
+.invoice-whole-cont {
+    margin: 20px 250px;
+}
+
+@media print {
+    .invoice-whole-cont {
+        margin: 0px 0px;
+    }
+}
+
+.invoice-container {
+    background-color: #fff;
+    padding: 0 20px;
+}
+
+.invoice-header {
+    display: flex;
+    margin-bottom: 100px;
+    margin-left: 150px;
+}
+
+.invoice-header .logo-container {
+    margin-right: 100px;
+}
+
+.invoice-header .companyName {
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #4c95e9;
+}
+
+.invoice-header .borderDdd .lP {
+    font-weight: 600;
+}
+
+.invoice-header .logo-container img {
+    width: 200px;
+}
+
+.invoice-to {
+    margin-bottom: 40px;
+}
+
+.invoice-to .invoice-header-split {
+    display: flex;
+}
+
+.titleInvoice {
+    font-size: 18px;
+}
+
+.to-container {
+    margin-right: 100px;
+    border: 1px solid #a7a5a5;
+    padding: 10px;
+    width: 450px;
+}
+
+.invoice-full-info {
+    /* background-color: red; */
+    width: 100%;
+    margin-bottom: 150px;
+}
+
+.invoice-full-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-full-info table tr th,
+.invoice-full-info table tr td {
+    border: 1px solid #000;
+    text-align: center;
+    padding: 10px;
+}
+
+.invoice-full-info table .this th {
+    font-weight: 600;
+}
+
+.invoice_cah_sign {
+    width: 100%;
+    text-align: center;
+}
+
+.invoice_cah_sign img {
+    width: 300px;
+    margin-left: 20%;
+}
+
+
+/* .invoice-full-info table tbody tr  {
+    height: 100px;
+} */
+
+/* {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{ _End_Invoice Design Codes_ }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}} */

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spectrometer Data Visualization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .chart-container {
+            width: 90%;
+            margin: 20px auto;
+            height: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #controls {
+            text-align: center;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #lastUpdate {
+            text-align: center;
+            color: #666;
+            margin: 10px;
+        }
+        .error-message {
+            color: #ff0000;
+            text-align: center;
+            margin: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <button id="toggleButton">Stop</button>
+    </div>
+    <div id="lastUpdate">Last Updated: Never</div>
+    <div id="errorMessage" class="error-message"></div>
+    <div class="chart-container">
+        <canvas id="upChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="downChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="ratioChart"></canvas>
+    </div>
+
+    <script>
+        const SPEC_CHANNELS = 288;
+        const UPDATE_INTERVAL = 1000; // 1 second
+        let isActive = true;
+
+        // Initialize data arrays
+        const channelLabels = Array.from({length: SPEC_CHANNELS}, (_, i) => i);
+        let upData = new Array(SPEC_CHANNELS).fill(0);
+        let downData = new Array(SPEC_CHANNELS).fill(0);
+        let ratioData = new Array(SPEC_CHANNELS).fill(0);
+
+        function movingAverage(data, windowSize = 5) {
+            const result = [];
+            for (let i = 0; i < data.length; i++) {
+                let sum = 0;
+                let count = 0;
+                for (let j = Math.max(0, i - windowSize + 1); j <= Math.min(data.length - 1, i + windowSize - 1); j++) {
+                    sum += data[j];
+                    count++;
+                }
+                result[i] = sum / count;
+            }
+            return result;
+        }
+
+        function createChart(canvasId, title, color) {
+            return new Chart(document.getElementById(canvasId), {
+                type: 'line',
+                data: {
+                    labels: channelLabels,
+                    datasets: [{
+                        label: title,
+                        data: [],
+                        borderColor: color,
+                        tension: 0.1,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 0
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        }
+
+        const upChart = createChart('upChart', 'Down-Welling Irradiance', 'rgb(54, 162, 235)');
+        const downChart = createChart('downChart', 'Up-Welling Radiance', 'rgb(75, 192, 192)');
+        const ratioChart = createChart('ratioChart', 'Spectrometer Ratio (Down/Up)', 'rgb(255, 99, 132)');
+
+        const errorMessageEl = document.getElementById('errorMessage');
+
+        async function updateData() {
+            try {
+                const response = await fetch('./php/get_data.php');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // Hide error message if successful
+                errorMessageEl.style.display = 'none';
+
+                // Update data arrays with smoothed values
+                upData = movingAverage(data.up_data);
+                downData = movingAverage(data.down_data);
+                ratioData = upData.map((up, i) => up === 0 ? 0 : downData[i] / up);
+
+                // Update charts
+                upChart.data.datasets[0].data = upData;
+                downChart.data.datasets[0].data = downData;
+                ratioChart.data.datasets[0].data = ratioData;
+
+                upChart.update('none');
+                downChart.update('none');
+                ratioChart.update('none');
+
+                // Update timestamp
+                document.getElementById('lastUpdate').textContent = 
+                    'Last Updated: ' + new Date().toLocaleTimeString();
+
+            } catch (error) {
+                console.error('Error:', error);
+                errorMessageEl.textContent = `Error: ${error.message}`;
+                errorMessageEl.style.display = 'block';
+            }
+        }
+
+        // Set up controls
+        const toggleButton = document.getElementById('toggleButton');
+        let updateInterval;
+
+        function startUpdating() {
+            updateData(); // Initial update
+            updateInterval = setInterval(updateData, UPDATE_INTERVAL);
+            toggleButton.textContent = 'Stop';
+            isActive = true;
+        }
+
+        function stopUpdating() {
+            clearInterval(updateInterval);
+            toggleButton.textContent = 'Start';
+            isActive = false;
+        }
+
+        toggleButton.addEventListener('click', () => {
+            if (isActive) {
+                stopUpdating();
+            } else {
+                startUpdating();
+            }
+        });
+
+        // Start updating
+        startUpdating();
+    </script>
+</body>
+</html>

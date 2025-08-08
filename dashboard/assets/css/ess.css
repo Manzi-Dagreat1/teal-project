@@ -1,0 +1,168 @@
+/* 
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+
+    
+
+    Contents and all features developed in this system.
+    Prepared and developed by @Prince Parfait - +(250) 7 9205 4846
+    Email Address: ganzaparfait7@gmail.com
+
+
+
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&#&&&&&&&&&&&&&&&&&&&&&&&&&
+
+*/
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --main-color: #0000ff;
+    --white-color: #fff;
+    --gray-color: #ccc;
+    --black-color: #000;
+    --text-color: #333;
+    --border-color: #eee;
+    --main-better-color: #bbbbff;
+    --body-background-color: #a3aedd5b;
+    --box-shadow-normal: 0 4px 4px 4px rgba(240, 238, 238, 0.3);
+    --box-shadow-darker: 0 4px 4px 4px rgba(224, 224, 224, 0.3);
+}
+
+form input,
+form select {
+    font-size: 14px !important;
+}
+
+.sub-compare .notify-page {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    font-weight: bold;
+    height: 100%;
+    width: 40%;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px dashed #6c757d;
+    opacity: 0.8;
+    transition: all 0.4s ease-in-out;
+}
+
+
+.sub-compare .notify-page:where(:focus-within, :hover) {
+    opacity: 1;
+}
+
+.modal-notify,
+.modal-warning {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    height: auto;
+    width: 400px;
+    background-color: var(--white-color);
+    box-shadow: 0 10px 10px 10px rgba(124, 145, 214, 0.13);
+    border-radius: 12px;
+    padding: 40px 40px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1000;
+    /* visibility: hidden; */
+    transform: scale(1) translate(-50%, -50%);
+    transform-origin: top left;
+    transition: all 0.4s ease-in-out;
+}
+
+.modal-warning {
+    box-shadow: 0 10px 10px 10px rgba(214, 124, 124, 0.13);
+}
+
+.modal-warning img {
+    height: 100px;
+    width: 100px;
+}
+
+.modal-notify .text-muted {
+    font-size: 14px;
+    margin-block-end: 20px;
+}
+
+.modal-notify input {
+    font-size: 14px !important;
+}
+
+.modal-notify.deactivate {
+    transform: scale(0) translate(-50%, -50%);
+}
+
+.modal-warning.deactivate {
+    transform: scale(0) translate(-50%, -50%);
+}
+
+
+.default-back-drop,
+.backDropM {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(152, 147, 228, 0.3);
+    height: 100vh;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 999;
+    transition: all 0.4s ease-in-out;
+}
+
+.backDropM {
+    background-color: rgba(228, 147, 147, 0.3) !important;
+}
+
+.default-back-drop.deactivate {
+    display: none;
+}
+
+.backDropM.deactivate {
+    display: none;
+}
+
+.qr-container {
+    height: 160px;
+    width: 160px;
+    background-color: var(--white-color);
+    border: 1px dashed #ccc;
+    margin: auto;
+    margin-block-end: 30px;
+    transition: all 0.4s ease-in-out;
+}
+
+.description-container {
+    border-bottom: 1px solid #d6d6d6;
+    transition: all 0.4s ease-in-out;
+}
+
+.notify-title {
+    padding-block-end: 20px;
+    transition: all 0.4s ease-in-out;
+}
+
+.header-title {
+    border-top: 1px solid #d6d6d6;
+    padding-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--main-color);
+    transition: all 0.4s ease-in-out;
+}

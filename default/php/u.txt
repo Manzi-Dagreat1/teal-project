@@ -1,0 +1,40 @@
+<?php
+    session_start();
+    include "config.php";
+
+    if (!isset($_SESSION['log_uni_id'])) {
+        header("Location: ../login.php");
+    }
+    $sql = mysqli_query($con, "SELECT * FROM `users` WHERE `Unique_id` = {$_SESSION['log_uni_id']}");
+    $row = mysqli_fetch_assoc($sql);
+    $row_role = strtolower($row['Role']);
+
+    if ($row_role == 'cashier') {
+        if ($row_role == 'cashier' && $row['Access'] == 'Granted') {
+            $_SESSION['cashier_uni_id'] = $row['Unique_id'];
+            if (isset($_SESSION['cashier_uni_id'])) {
+                echo "<script>window.location.href='../../cashier/'</script>";
+            }
+        } else {
+            echo "<script>alert('Sorry! You are no longer have access. You can ask your Admin about this simple problem.')</script>";
+            $status = "Offline now";
+            $update = mysqli_query($con, "UPDATE `users` SET `Status` = '$status' WHERE `Unique_id` = {$row['Unique_id']}");
+            echo "<script>window.location.href='../login.php'</script>";
+        }
+    } elseif ($row_role == 'admin') {
+        if ($row_role == 'admin' && $row['Access'] == 'Granted' || $row['Access'] != 'Granted') {
+            $_SESSION['admin_uni_id'] = $row['Unique_id'];
+            if (isset($_SESSION['admin_uni_id'])) {
+                echo "<script>window.location.href='../../admin/'</script>";
+            }
+        } else {
+            echo "<script>alert('Sorry! You are no longer have access.')</script>";
+            $status = "Offline now";
+            $update = mysqli_query($con, "UPDATE `users` SET `Status` = '$status' WHERE `Unique_id` = {$row['Unique_id']}");
+            echo "<script>window.location.href='../login.php'</script>";
+        }
+    } else {
+        echo "<script>window.location.href = '../error.php'</script>";
+    }
+
+?>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Spectrometer Data</title>
+</head>
+<body>
+    <h1>Sending Spectrometer Data to Server...</h1>
+
+    <script>
+       async function sendData() {
+    const upData = JSON.stringify(Array.from({ length: 288 }, () => Math.floor(Math.random() * 1000))); // Simulated Up Data
+    const downData = JSON.stringify(Array.from({ length: 288 }, () => Math.floor(Math.random() * 1000))); // Simulated Down Data
+    const temperature = (Math.random() * 10 + 20).toFixed(2); // 20°C - 30°C
+    const tds = (Math.random() * 500).toFixed(2); // 0 - 500 ppm
+    const turbidity = (Math.random() * 100).toFixed(2); // 0 - 100 NTU
+
+    const url = `./data.php?up=${encodeURIComponent(upData)}&down=${encodeURIComponent(downData)}&temperature=${temperature}&tds=${tds}&turbidity=${turbidity}`;
+
+    try {
+        const response = await fetch(url);
+        const result = await response.json();
+        console.log(result); // Debugging output
+    } catch (error) {
+        console.error("Error sending data:", error);
+    }
+}
+
+// Send data every 5 seconds (adjust as needed)
+setInterval(sendData, 1000);
+ // Sends data every second
+    </script>
+</body>
+</html>

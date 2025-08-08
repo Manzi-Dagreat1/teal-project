@@ -1,0 +1,137 @@
+/* 
+
+    Contents and all features developed in this system.
+    Prepared and developed by @Prince Parfait - +(250) 7 9205 4846
+    Email Address: ganzaparfait7@gmail.com
+
+*/
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --main-color: #0000ff;
+    --white-color: #fff;
+    --gray-color: #ccc;
+    --black-color: #000;
+    --text-color: #333;
+    --border-color: #eee;
+    --main-better-color: #bbbbff;
+    --body-background-color: #e6e6e6;
+    --box-shadow-normal: 0 4px 4px 4px rgba(240, 238, 238, 0.3);
+    --box-shadow-darker: 0 4px 4px 4px rgba(224, 224, 224, 0.3);
+}
+
+body {
+    background-color: #fff;
+}
+
+.main-report-container {
+    background-color: var(--white-color);
+    width: 100%;
+    height: 100%;
+    padding: 40px 40px;
+}
+
+.main-report-container.active {
+    padding: 10px 20px;
+}
+
+.main-report-container .header-report-contents {
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.header-report-contents .right-report-contents {
+    padding-top: 10px;
+    padding-right: 20px;
+    text-align: right;
+}
+
+.header-report-contents .logo-container {
+    background-color: transparent;
+    width: 280px;
+    height: 80px;
+}
+
+.header-report-contents .logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-report-container .whole-main-title {
+    background-color: transparent;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 100%;
+    color: #333;
+    font-size: 32px;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+}
+
+.mainBtns {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    background-color: #fff;
+    z-index: 999;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-darker);
+}
+
+.mainBtns a {
+    display: block;
+    padding: 10px 20px;
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: var(--main-color);
+    margin-bottom: 10px;
+    border: 1px solid var(--main-color);
+    color: var(--white-color);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    border-radius: 50%;
+}
+
+
+.mainBtns a:hover {
+    background-color: var(--white-color);
+    color: var(--main-color);
+}
+
+.mainBtns a.saveInvo:hover {
+    background-color: green;
+    color: green;
+}
+
+.mainBtns .cancelBtn {
+    background-color: #ff0000;
+    border: 1px solid #ff0000;
+}
+
+.mainBtns .cancelBtn:hover {
+    color: #ff0000;
+}
+
+@media (max-width: 850px) {
+    .main-report-container {
+        padding: 5px 10px;
+    }
+}
